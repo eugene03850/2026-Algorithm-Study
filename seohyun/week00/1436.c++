@@ -67,4 +67,5 @@ int main(){
     //end.resize(10000);
     //for(int i : end) cout << i<< " ";
     //cout << end.size();
+
 }
