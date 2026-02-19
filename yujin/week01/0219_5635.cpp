@@ -12,7 +12,7 @@ struct Student{
     int year;
 };
 
-int compare(const Student& a, const Student& b){
+bool compare(const Student& a, const Student& b){
     if (a.year != b.year)
         return a.year < b.year;
 
