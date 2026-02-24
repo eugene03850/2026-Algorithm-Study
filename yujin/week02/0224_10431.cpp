@@ -21,7 +21,7 @@ int sortheight(const vector<int>& students){
             }
             
         }
-        if(inserted==false){
+        if(!inserted){
                 sorted.push_back(students[i]);
         }
     }
@@ -34,19 +34,17 @@ int sortheight(const vector<int>& students){
 
 int main() {
 
-    int p,t,height;
+    int p,t;
 
     cin>>p;
 
-    vector<vector<int>> students(p);
-
     for(int j=0; j<p; j++){
+        vector<int> students(20);
         cin>>t;
         for(int i=0; i<20; i++){
-            cin>>height;
-            students[j].push_back(height);                    
+            cin>>students[i];                
         }
-        cout<<t<<" "<<sortheight(students[j])<<'\n';
+        cout<<t<<" "<<sortheight(students)<<'\n';
     }
 
     return 0;
