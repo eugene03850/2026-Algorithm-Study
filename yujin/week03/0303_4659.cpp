@@ -1,55 +1,55 @@
 #include <iostream>
 #include <string>
-#include <vector>
+
 using namespace std;
 
-bool pwCheck(const string& str){
-    
-    int cnt_vowel=1;
-    int cnt_conso=1;
-
-    int len = str.length();
-    vector<bool> vowels(len, false);    
-    
-    bool is_vowel=false;
-
-    if(str[0]=='a'||str[0]=='e'||str[0]=='i'||str[0]=='o'||str[0]=='u'){
-        vowels[0]=true;
-        is_vowel=true;
+bool isVowel(char c){
+    if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'){
+        return true;
     }
+    else{
+        return false;
+    }
+}
 
+bool pwCheck(const string& str){    
+    int cnt_vowel=0;
+    int cnt_conso=0;
+    int len = str.length();
     
-    for(int i=1; i<len; i++){
+    bool cur_is_vowel=false;
+    bool has_vowel=false;
+    
+
+    for(int i=0; i<len; i++){
+        bool cur_is_vowel = isVowel(str[i]);
+
+
         if((str[i]==str[i-1])&&(str[i]!='e'&&str[i]!='o')){
             return false;
         }
 
-        if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u'){
-            vowels[i]=true;
-            is_vowel=true;
-        }
-
-        if(vowels[i]==false&&vowels[i-1]==false){
-            cnt_conso++;
-        }
-        else if(vowels[i]==true&&vowels[i-1]==false){
+        if(cur_is_vowel==true){
+            has_vowel=true;
+            cnt_vowel++;
             cnt_conso=0;
-            cnt_vowel=1;
-        }     
-        else if(vowels[i]==false&&vowels[i-1]==true){
-            cnt_conso=1;
-            cnt_vowel=0;
         }
         else{
-            cnt_vowel++;
-        } 
+            cnt_vowel=0;
+            cnt_conso++;
+        }
+
+
+
         
-        if(cnt_vowel==3 || cnt_conso==3){ return false; }
+        if(cnt_vowel>=3 || cnt_conso>=3){
+            return false;
+        }
 
 
     }
 
-    if(is_vowel==false){
+    if(has_vowel==false){
         return false;
     }
 
