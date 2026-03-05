@@ -6,18 +6,15 @@ int main() {
     int n; 
     cin>>n;
 
-    int i=0;
     int layer=1;
+    int lastroom=1;
 
-    while(true){
-        layer = layer+6*i;
-        if(n<=layer){
-            break;
-        }
-        i++;
+    while(n>lastroom){
+        lastroom = layer*6+lastroom;
+        layer++;
     }
 
-    cout<<i+1;
+    cout<<layer;
 
     
     return 0;
