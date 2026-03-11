@@ -3,8 +3,10 @@
 #include <algorithm>
 using namespace std;
 
+const int MAX_TEAM = 201;
+
 int findWinner(int n, const vector<int>& v){
-    vector<int> team_mem(201);
+    vector<int> team_mem(MAX_TEAM);
 
     for(int i=0; i<n; i++){
         team_mem[v[i]]++;
@@ -16,9 +18,9 @@ int findWinner(int n, const vector<int>& v){
         }
     }
 
-    vector<int> teamscore(201);
-    vector<int> fifthscore(201);
-    vector<int> mem_count(201);
+    vector<int> teamscore(MAX_TEAM);
+    vector<int> fifthscore(MAX_TEAM);
+    vector<int> mem_count(MAX_TEAM);
     int rank=1;
     
     for(int i=0; i<n; i++){
@@ -37,19 +39,12 @@ int findWinner(int n, const vector<int>& v){
 
     int winner = -1;
 
-    for(int i=1; i<teamscore.size(); i++){
-        if(team_mem[i] > 0){
-            winner = i;
-            break;
-        }
-    }
+    for(int i=1; i<MAX_TEAM; i++){
 
-    for(int i=1; i<teamscore.size(); i++){
-
-        if((team_mem[i] > 0)&&teamscore[winner]>teamscore[i]){
-            winner=i;
+        if(team_mem[i]==0){
+            continue;
         }
-        else if((team_mem[i] > 0)&&teamscore[winner]==teamscore[i] && fifthscore[winner]>fifthscore[i]){
+        if(winner==-1||teamscore[winner]>teamscore[i]||(teamscore[winner]==teamscore[i] && fifthscore[winner]>fifthscore[i])){
             winner = i;
         }
     }
