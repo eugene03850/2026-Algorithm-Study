@@ -19,9 +19,9 @@ bool compare(const Word &a, const Word &b){
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     int n;
     while(cin >> n && n != 0){
-        string max;
         vector<Word> words(n);
         for(int i = 0; i < n; i++){
             string change;
